@@ -1,0 +1,165 @@
+import { CADObject, Point, StencilDefinition } from "../../../types/cad";
+import { uid } from "../common";
+
+export const TRIANGULAR_3LEG_STENCILS: StencilDefinition[] = [
+  {
+    id: '3leg-tower',
+    name: '3-Leg Lattice Tower (Triangular Base)',
+    category: 'tower',
+    badge: '3 Legs (Cost-Effective)',
+    description: '3 legs (triangular base). Highly common because they use less steel and are cost-effective. Steel framework connected by cross-braces.',
+    defaultWidth: 150,
+    defaultHeight: 130,
+    createObjects: (origin: Point, scale?: number): CADObject[] => {
+      const parentId = uid();
+      const w = 150;
+      const h = 130;
+      const p1 = { x: w / 2, y: 15 };
+      const p2 = { x: 15, y: h - 15 };
+      const p3 = { x: w - 15, y: h - 15 };
+
+      const mainGroup: CADObject = {
+        id: parentId,
+        type: 'stencil-group',
+        stencilId: '3leg-tower',
+        isStencil: true,
+        x: origin.x,
+        y: origin.y,
+        width: w,
+        height: h,
+        stroke: '#f59e0b',
+        strokeWidth: 2,
+        fill: 'transparent',
+        fillEnabled: false,
+        fillOpacity: 0,
+        opacity: 1,
+        customProps: { stencilType: '3leg-tower', towerHeightM: 30, isTower: true },
+        towerHeightM: 30,
+        children: [
+          // Outer triangle
+          {
+            id: uid(),
+            type: 'polyline',
+            x: 0,
+            y: 0,
+            width: w,
+            height: h,
+            stroke: '#d97706',
+            strokeWidth: 2.5,
+            fill: 'transparent',
+            fillEnabled: false,
+            fillOpacity: 0,
+            opacity: 1,
+            points: [p1, p2, p3, p1],
+          },
+          // Internal lattice lines to center
+          {
+            id: uid(),
+            type: 'line',
+            x: p1.x,
+            y: p1.y,
+            x2: w / 2,
+            y2: h / 2 + 10,
+            width: 0,
+            height: 0,
+            stroke: '#b45309',
+            strokeWidth: 1.5,
+            strokeDash: [4, 4],
+            fill: 'transparent',
+            fillEnabled: false,
+            fillOpacity: 0,
+            opacity: 0.8,
+          },
+          {
+            id: uid(),
+            type: 'line',
+            x: p2.x,
+            y: p2.y,
+            x2: w / 2,
+            y2: h / 2 + 10,
+            width: 0,
+            height: 0,
+            stroke: '#b45309',
+            strokeWidth: 1.5,
+            strokeDash: [4, 4],
+            fill: 'transparent',
+            fillEnabled: false,
+            fillOpacity: 0,
+            opacity: 0.8,
+          },
+          {
+            id: uid(),
+            type: 'line',
+            x: p3.x,
+            y: p3.y,
+            x2: w / 2,
+            y2: h / 2 + 10,
+            width: 0,
+            height: 0,
+            stroke: '#b45309',
+            strokeWidth: 1.5,
+            strokeDash: [4, 4],
+            fill: 'transparent',
+            fillEnabled: false,
+            fillOpacity: 0,
+            opacity: 0.8,
+          },
+          // 3 Foundation Pads
+          ...[p1, p2, p3].map((pt) => ({
+            id: uid(),
+            type: 'circle' as const,
+            x: pt.x - 12,
+            y: pt.y - 12,
+            width: 24,
+            height: 24,
+            stroke: '#fcd34d',
+            strokeWidth: 2,
+            fill: '#451a03',
+            fillEnabled: true,
+            fillOpacity: 1,
+            opacity: 1,
+          })),
+          // 3 Leg Nodes
+          ...[p1, p2, p3].map((pt) => ({
+            id: uid(),
+            type: 'circle' as const,
+            x: pt.x - 6,
+            y: pt.y - 6,
+            width: 12,
+            height: 12,
+            stroke: '#ffffff',
+            strokeWidth: 2,
+            fill: '#f59e0b',
+            fillEnabled: true,
+            fillOpacity: 1,
+            opacity: 1,
+          })),
+        ],
+      };
+
+      const label: CADObject = {
+        id: uid(),
+        type: 'text',
+        x: origin.x + w / 2 - 40,
+        y: origin.y - 18,
+        width: 80,
+        height: 18,
+        text: '3-LEG TOWER',
+        fontSize: 10,
+        bold: true,
+        textColor: '#f59e0b',
+        bgColor: '#1e293b',
+        stroke: '#d97706',
+        strokeWidth: 1,
+        fill: '#1e293b',
+        fillEnabled: true,
+        fillOpacity: 0.9,
+        opacity: 1,
+        isStencilLabel: true,
+        parentId: parentId,
+      };
+
+      return [mainGroup, label];
+    },
+  },
+];

@@ -1,0 +1,166 @@
+import { CADObject, Point, StencilDefinition } from "../../../types/cad";
+import { uid } from "../common";
+
+export const ECB_POLE_STENCIL: StencilDefinition = {
+  id: 'ecb-pole',
+  name: 'ECB (Pole Mounted)',
+  category: 'power',
+  badge: 'Pole Mounted',
+  description: 'Outdoor ECB emergency circuit breaker & disconnect switch mounted on utility or telecom concrete/steel pole with stainless steel banding straps, vertical conduit riser pipe, red disconnect handle, LOTO padlock hole, and pole grounding clamp',
+  defaultWidth: 38,
+  defaultHeight: 34,
+  createObjects: (origin: Point): CADObject[] => {
+    const parentId = uid();
+    const w = 38;
+    const h = 34;
+
+    const mainGroup: CADObject = {
+      id: parentId,
+      type: 'stencil-group',
+      stencilId: 'ecb-pole',
+      isStencil: true,
+      x: origin.x,
+      y: origin.y,
+      width: w,
+      height: h,
+      stroke: '#ef4444',
+      strokeWidth: 1.8,
+      fill: '#1e293b',
+      fillEnabled: true,
+      fillOpacity: 0.95,
+      opacity: 1,
+      customProps: { stencilType: 'ecb-pole', mounting: 'pole' },
+      children: [
+        // Slender Galvanized Steel Utility Pipe Pole (realistic diameter)
+        {
+          id: uid(),
+          type: 'circle',
+          x: 15,
+          y: 1.5,
+          width: 8,
+          height: 8,
+          stroke: '#94a3b8',
+          strokeWidth: 1.2,
+          fill: '#334155',
+          fillEnabled: true,
+          fillOpacity: 1,
+          opacity: 1,
+        },
+        // Stainless steel banding strap wrapping pole
+        {
+          id: uid(),
+          type: 'rectangle',
+          x: 12,
+          y: 4.5,
+          width: 14,
+          height: 2.5,
+          stroke: '#e2e8f0',
+          strokeWidth: 0.8,
+          fill: '#64748b',
+          fillEnabled: true,
+          fillOpacity: 0.85,
+          opacity: 1,
+        },
+        // Heavy unistrut bracket
+        {
+          id: uid(),
+          type: 'rectangle',
+          x: 5,
+          y: 9.5,
+          width: 28,
+          height: 2.5,
+          stroke: '#94a3b8',
+          strokeWidth: 1,
+          fill: '#475569',
+          fillEnabled: true,
+          fillOpacity: 1,
+          opacity: 1,
+        },
+        // ECB Weatherproof Enclosure Body
+        {
+          id: uid(),
+          type: 'rectangle',
+          x: 4,
+          y: 12,
+          width: 30,
+          height: 19,
+          stroke: '#ef4444',
+          strokeWidth: 1.8,
+          fill: '#1e293b',
+          fillEnabled: true,
+          fillOpacity: 0.95,
+          opacity: 1,
+        },
+        // Disconnect throw handle
+        {
+          id: uid(),
+          type: 'rectangle',
+          x: 24,
+          y: 16,
+          width: 4,
+          height: 8,
+          stroke: '#fca5a5',
+          strokeWidth: 1,
+          fill: '#dc2626',
+          fillEnabled: true,
+          fillOpacity: 1,
+          opacity: 1,
+        },
+        // Vertical conduit riser pipe along pole
+        {
+          id: uid(),
+          type: 'rectangle',
+          x: 32,
+          y: 2,
+          width: 3,
+          height: 29,
+          stroke: '#38bdf8',
+          strokeWidth: 0.8,
+          fill: '#0284c7',
+          fillEnabled: true,
+          fillOpacity: 0.9,
+          opacity: 1,
+        },
+        // Ground clamp
+        {
+          id: uid(),
+          type: 'circle',
+          x: 17.5,
+          y: 7.5,
+          width: 3.5,
+          height: 3.5,
+          stroke: '#d97706',
+          strokeWidth: 0.8,
+          fill: '#b45309',
+          fillEnabled: true,
+          fillOpacity: 1,
+          opacity: 1,
+        },
+      ],
+    };
+
+    const label: CADObject = {
+      id: uid(),
+      type: 'text',
+      x: origin.x + w / 2 - 34,
+      y: origin.y - 18,
+      width: 68,
+      height: 18,
+      text: 'ECB (POLE)',
+      fontSize: 9,
+      bold: true,
+      textColor: '#ef4444',
+      bgColor: '#1e293b',
+      stroke: '#b91c1c',
+      strokeWidth: 1,
+      fill: '#1e293b',
+      fillEnabled: true,
+      fillOpacity: 0.9,
+      opacity: 1,
+      isStencilLabel: true,
+      parentId: parentId,
+    };
+
+    return [mainGroup, label];
+  },
+};

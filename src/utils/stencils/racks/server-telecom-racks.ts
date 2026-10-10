@@ -1,0 +1,295 @@
+import { CADObject, Point, StencilDefinition } from '../../../types/cad';
+import { uid } from '../common';
+
+export const SERVER_TELECOM_RACK_STENCILS: StencilDefinition[] = [
+  {
+    id: 'rack-telecom-600x600',
+    name: '42U Telecom Rack (600×600mm)',
+    category: 'racks',
+    description:
+      'Compact 42U 19-inch telecom equipment rack (600×600mm) for transmission, access equipment, and patch panels',
+    defaultWidth: 38,
+    defaultHeight: 38,
+    createObjects: (origin: Point): CADObject[] => {
+      const parentId = uid();
+      const w = 38;
+      const h = 38;
+      const mainGroup: CADObject = {
+        id: parentId,
+        type: 'stencil-group',
+        stencilId: 'rack-telecom-600x600',
+        isStencil: true,
+        x: origin.x,
+        y: origin.y,
+        width: w,
+        height: h,
+        stroke: '#38bdf8',
+        strokeWidth: 2,
+        fill: '#0f172a',
+        fillEnabled: true,
+        fillOpacity: 0.95,
+        opacity: 1,
+        customProps: { stencilType: 'rack-telecom-600x600', uHeight: 42, widthMm: 600, depthMm: 600 },
+        children: [
+          {
+            id: uid(),
+            type: 'rectangle',
+            x: 0,
+            y: 0,
+            width: w,
+            height: h,
+            stroke: '#38bdf8',
+            strokeWidth: 2,
+            fill: '#1e293b',
+            fillEnabled: true,
+            fillOpacity: 1,
+            opacity: 1,
+          },
+          {
+            id: uid(),
+            type: 'rectangle',
+            x: 4,
+            y: h - 8,
+            width: w - 8,
+            height: 5,
+            stroke: '#0284c7',
+            strokeWidth: 1,
+            fill: '#090d16',
+            fillEnabled: true,
+            fillOpacity: 0.9,
+            opacity: 1,
+          },
+        ],
+      };
+      const label: CADObject = {
+        id: uid(),
+        type: 'text',
+        x: origin.x + w / 2 - 25,
+        y: origin.y + h / 2 - 8,
+        width: 50,
+        height: 16,
+        text: '600×600 42U',
+        fontSize: 7.5,
+        bold: true,
+        textColor: '#38bdf8',
+        bgColor: '#0f172a',
+        stroke: '#0284c7',
+        strokeWidth: 1,
+        fill: '#0f172a',
+        fillEnabled: true,
+        fillOpacity: 0.9,
+        opacity: 1,
+        isStencilLabel: true,
+        parentId: parentId,
+      };
+      return [mainGroup, label];
+    },
+  },
+  {
+    id: 'rack-telecom-800x800',
+    name: '42U Wide Telecom Rack (800×800mm)',
+    category: 'racks',
+    description:
+      'Extra-width 42U 19-inch telecom rack (800×800mm) with integrated dual vertical cable organizers & high-capacity finger ducts',
+    defaultWidth: 50,
+    defaultHeight: 50,
+    createObjects: (origin: Point): CADObject[] => {
+      const parentId = uid();
+      const w = 50;
+      const h = 50;
+      const mainGroup: CADObject = {
+        id: parentId,
+        type: 'stencil-group',
+        stencilId: 'rack-telecom-800x800',
+        isStencil: true,
+        x: origin.x,
+        y: origin.y,
+        width: w,
+        height: h,
+        stroke: '#0ea5e9',
+        strokeWidth: 2,
+        fill: '#082f49',
+        fillEnabled: true,
+        fillOpacity: 0.95,
+        opacity: 1,
+        customProps: { stencilType: 'rack-telecom-800x800', uHeight: 42, widthMm: 800, depthMm: 800 },
+        children: [
+          {
+            id: uid(),
+            type: 'rectangle',
+            x: 0,
+            y: 0,
+            width: w,
+            height: h,
+            stroke: '#0ea5e9',
+            strokeWidth: 2,
+            fill: '#0c4a6e',
+            fillEnabled: true,
+            fillOpacity: 1,
+            opacity: 1,
+          },
+        ],
+      };
+      const label: CADObject = {
+        id: uid(),
+        type: 'text',
+        x: origin.x + w / 2 - 27,
+        y: origin.y + h / 2 - 8,
+        width: 54,
+        height: 16,
+        text: '800×800 WIDE',
+        fontSize: 7.5,
+        bold: true,
+        textColor: '#38bdf8',
+        bgColor: '#082f49',
+        stroke: '#0284c7',
+        strokeWidth: 1,
+        fill: '#082f49',
+        fillEnabled: true,
+        fillOpacity: 0.9,
+        opacity: 1,
+        isStencilLabel: true,
+        parentId: parentId,
+      };
+      return [mainGroup, label];
+    },
+  },
+  {
+    id: 'rack-server-800x1000',
+    name: '45U Deep Server Cabinet (800×1000mm)',
+    category: 'racks',
+    description:
+      '45U High-density enterprise server & blade enclosure (800×1000mm) with split perforated doors, dual PDU brackets, and high load capacity',
+    defaultWidth: 50,
+    defaultHeight: 62,
+    createObjects: (origin: Point): CADObject[] => {
+      const parentId = uid();
+      const w = 50;
+      const h = 62;
+      const mainGroup: CADObject = {
+        id: parentId,
+        type: 'stencil-group',
+        stencilId: 'rack-server-800x1000',
+        isStencil: true,
+        x: origin.x,
+        y: origin.y,
+        width: w,
+        height: h,
+        stroke: '#a855f7',
+        strokeWidth: 2,
+        fill: '#2e1065',
+        fillEnabled: true,
+        fillOpacity: 0.95,
+        opacity: 1,
+        customProps: { stencilType: 'rack-server-800x1000', uHeight: 45, widthMm: 800, depthMm: 1000 },
+        children: [
+          {
+            id: uid(),
+            type: 'rectangle',
+            x: 0,
+            y: 0,
+            width: w,
+            height: h,
+            stroke: '#a855f7',
+            strokeWidth: 2,
+            fill: '#3b0764',
+            fillEnabled: true,
+            fillOpacity: 1,
+            opacity: 1,
+          },
+        ],
+      };
+      const label: CADObject = {
+        id: uid(),
+        type: 'text',
+        x: origin.x + w / 2 - 27,
+        y: origin.y + h / 2 - 8,
+        width: 54,
+        height: 16,
+        text: '800×1000 45U',
+        fontSize: 7.5,
+        bold: true,
+        textColor: '#c084fc',
+        bgColor: '#2e1065',
+        stroke: '#7e22ce',
+        strokeWidth: 1,
+        fill: '#2e1065',
+        fillEnabled: true,
+        fillOpacity: 0.9,
+        opacity: 1,
+        isStencilLabel: true,
+        parentId: parentId,
+      };
+      return [mainGroup, label];
+    },
+  },
+  {
+    id: 'rack-half-24u',
+    name: '24U Half-Height Telecom Rack',
+    category: 'racks',
+    description:
+      'Compact 24U half-height equipment rack (600×600×1200mm) ideal for edge sites, auxiliary gear, or low-ceiling shelters',
+    defaultWidth: 38,
+    defaultHeight: 38,
+    createObjects: (origin: Point): CADObject[] => {
+      const parentId = uid();
+      const w = 38;
+      const h = 38;
+      const mainGroup: CADObject = {
+        id: parentId,
+        type: 'stencil-group',
+        stencilId: 'rack-half-24u',
+        isStencil: true,
+        x: origin.x,
+        y: origin.y,
+        width: w,
+        height: h,
+        stroke: '#10b981',
+        strokeWidth: 2,
+        fill: '#064e3b',
+        fillEnabled: true,
+        fillOpacity: 0.95,
+        opacity: 1,
+        customProps: { stencilType: 'rack-half-24u', uHeight: 24, widthMm: 600, depthMm: 600, heightMm: 1200 },
+        children: [
+          {
+            id: uid(),
+            type: 'rectangle',
+            x: 0,
+            y: 0,
+            width: w,
+            height: h,
+            stroke: '#10b981',
+            strokeWidth: 2,
+            fill: '#065f46',
+            fillEnabled: true,
+            fillOpacity: 1,
+            opacity: 1,
+          },
+        ],
+      };
+      const label: CADObject = {
+        id: uid(),
+        type: 'text',
+        x: origin.x + w / 2 - 24,
+        y: origin.y + h / 2 - 8,
+        width: 48,
+        height: 16,
+        text: '24U HALF',
+        fontSize: 7.5,
+        bold: true,
+        textColor: '#34d399',
+        bgColor: '#064e3b',
+        stroke: '#059669',
+        strokeWidth: 1,
+        fill: '#064e3b',
+        fillEnabled: true,
+        fillOpacity: 0.9,
+        opacity: 1,
+        isStencilLabel: true,
+        parentId: parentId,
+      };
+      return [mainGroup, label];
+    },
+  },
+];

@@ -1,0 +1,277 @@
+import { CADObject, Point, StencilDefinition } from "../../../types/cad";
+import { uid } from "../common";
+
+export const COOLING_SAFETY_STENCILS: StencilDefinition[] = [
+  {
+    id: 'ac-indoor-split',
+    name: 'Indoor Split AC Blower',
+    category: 'cooling',
+    description: 'High-wall mounted indoor split air conditioner evaporator blower unit with digital thermostat and motorized louvers',
+    defaultWidth: 45,
+    defaultHeight: 18,
+    createObjects: (origin: Point): CADObject[] => {
+      const parentId = uid();
+      const w = 45;
+      const h = 18;
+      const mainGroup: CADObject = {
+        id: parentId,
+        type: 'stencil-group',
+        stencilId: 'ac-indoor-split',
+        isStencil: true,
+        x: origin.x,
+        y: origin.y,
+        width: w,
+        height: h,
+        stroke: '#38bdf8',
+        strokeWidth: 2,
+        fill: '#f8fafc',
+        fillEnabled: true,
+        fillOpacity: 0.95,
+        opacity: 1,
+        customProps: { stencilType: 'ac-indoor-split', placement: 'wall-mount' },
+        children: [
+          {
+            id: uid(),
+            type: 'rectangle',
+            x: 0,
+            y: 0,
+            width: w,
+            height: h,
+            stroke: '#38bdf8',
+            strokeWidth: 2,
+            fill: '#f1f5f9',
+            fillEnabled: true,
+            fillOpacity: 1,
+            opacity: 1,
+          },
+        ],
+      };
+      const label: CADObject = {
+        id: uid(),
+        type: 'text',
+        x: origin.x + w / 2 - 22,
+        y: origin.y + h / 2 - 8,
+        width: 44,
+        height: 16,
+        text: 'INDOOR AC',
+        fontSize: 7.5,
+        bold: true,
+        textColor: '#0284c7',
+        bgColor: '#f8fafc',
+        stroke: '#38bdf8',
+        strokeWidth: 1,
+        fill: '#f8fafc',
+        fillEnabled: true,
+        fillOpacity: 0.95,
+        opacity: 1,
+        isStencilLabel: true,
+        parentId: parentId,
+      };
+      return [mainGroup, label];
+    },
+  },
+  {
+    id: 'ac-precision-crac',
+    name: 'Precision CRAC Cooling Unit',
+    category: 'cooling',
+    description: 'Floor-standing Computer Room Air Conditioner (CRAC) downflow precision climate unit with dual EC fans and micro-controller',
+    defaultWidth: 45,
+    defaultHeight: 40,
+    createObjects: (origin: Point): CADObject[] => {
+      const parentId = uid();
+      const w = 45;
+      const h = 40;
+      const mainGroup: CADObject = {
+        id: parentId,
+        type: 'stencil-group',
+        stencilId: 'ac-precision-crac',
+        isStencil: true,
+        x: origin.x,
+        y: origin.y,
+        width: w,
+        height: h,
+        stroke: '#0ea5e9',
+        strokeWidth: 2,
+        fill: '#0c4a6e',
+        fillEnabled: true,
+        fillOpacity: 0.9,
+        opacity: 1,
+        customProps: { stencilType: 'ac-precision-crac' },
+        children: [
+          {
+            id: uid(),
+            type: 'rectangle',
+            x: 0,
+            y: 0,
+            width: w,
+            height: h,
+            stroke: '#0ea5e9',
+            strokeWidth: 2,
+            fill: '#075985',
+            fillEnabled: true,
+            fillOpacity: 1,
+            opacity: 1,
+          },
+        ],
+      };
+      const label: CADObject = {
+        id: uid(),
+        type: 'text',
+        x: origin.x + w / 2 - 24,
+        y: origin.y + h / 2 - 8,
+        width: 48,
+        height: 16,
+        text: 'CRAC UNIT',
+        fontSize: 8,
+        bold: true,
+        textColor: '#38bdf8',
+        bgColor: '#082f49',
+        stroke: '#0284c7',
+        strokeWidth: 1,
+        fill: '#082f49',
+        fillEnabled: true,
+        fillOpacity: 0.9,
+        opacity: 1,
+        isStencilLabel: true,
+        parentId: parentId,
+      };
+      return [mainGroup, label];
+    },
+  },
+  {
+    id: 'fire-suppression-fm200',
+    name: 'FM200 Fire Suppression Tank',
+    category: 'shelter',
+    description: 'Clean agent gas fire suppression cylinder tank (FM200 / Novec 1230) with pressure gauge and discharge nozzle',
+    defaultWidth: 22,
+    defaultHeight: 22,
+    createObjects: (origin: Point): CADObject[] => {
+      const parentId = uid();
+      const w = 22;
+      const h = 22;
+      const mainGroup: CADObject = {
+        id: parentId,
+        type: 'stencil-group',
+        stencilId: 'fire-suppression-fm200',
+        isStencil: true,
+        x: origin.x,
+        y: origin.y,
+        width: w,
+        height: h,
+        stroke: '#ef4444',
+        strokeWidth: 2,
+        fill: '#7f1d1d',
+        fillEnabled: true,
+        fillOpacity: 0.9,
+        opacity: 1,
+        customProps: { stencilType: 'fire-suppression-fm200' },
+        children: [
+          {
+            id: uid(),
+            type: 'circle',
+            x: 0,
+            y: 0,
+            width: w,
+            height: h,
+            stroke: '#ef4444',
+            strokeWidth: 2,
+            fill: '#991b1b',
+            fillEnabled: true,
+            fillOpacity: 1,
+            opacity: 1,
+          },
+        ],
+      };
+      const label: CADObject = {
+        id: uid(),
+        type: 'text',
+        x: origin.x + w / 2 - 18,
+        y: origin.y + h / 2 - 6,
+        width: 36,
+        height: 12,
+        text: 'FM200',
+        fontSize: 7,
+        bold: true,
+        textColor: '#fecaca',
+        bgColor: '#7f1d1d',
+        stroke: '#ef4444',
+        strokeWidth: 1,
+        fill: '#7f1d1d',
+        fillEnabled: true,
+        fillOpacity: 0.9,
+        opacity: 1,
+        isStencilLabel: true,
+        parentId: parentId,
+      };
+      return [mainGroup, label];
+    },
+  },
+  {
+    id: 'ground-busbar-tgb',
+    name: 'Copper Ground Busbar (TGB)',
+    category: 'power',
+    description: 'Telecommunications Grounding Busbar (TGB / MGB) solid copper bar mounted on standoffs with two-hole compression lugs',
+    defaultWidth: 40,
+    defaultHeight: 12,
+    createObjects: (origin: Point): CADObject[] => {
+      const parentId = uid();
+      const w = 40;
+      const h = 12;
+      const mainGroup: CADObject = {
+        id: parentId,
+        type: 'stencil-group',
+        stencilId: 'ground-busbar-tgb',
+        isStencil: true,
+        x: origin.x,
+        y: origin.y,
+        width: w,
+        height: h,
+        stroke: '#f59e0b',
+        strokeWidth: 1.5,
+        fill: '#78350f',
+        fillEnabled: true,
+        fillOpacity: 0.95,
+        opacity: 1,
+        customProps: { stencilType: 'ground-busbar-tgb', placement: 'wall-mount' },
+        children: [
+          {
+            id: uid(),
+            type: 'rectangle',
+            x: 0,
+            y: 0,
+            width: w,
+            height: h,
+            stroke: '#f59e0b',
+            strokeWidth: 1.5,
+            fill: '#b45309',
+            fillEnabled: true,
+            fillOpacity: 1,
+            opacity: 1,
+          },
+        ],
+      };
+      const label: CADObject = {
+        id: uid(),
+        type: 'text',
+        x: origin.x + w / 2 - 16,
+        y: origin.y + h / 2 - 6,
+        width: 32,
+        height: 12,
+        text: 'TGB GND',
+        fontSize: 7,
+        bold: true,
+        textColor: '#fef3c7',
+        bgColor: '#78350f',
+        stroke: '#b45309',
+        strokeWidth: 1,
+        fill: '#78350f',
+        fillEnabled: true,
+        fillOpacity: 0.9,
+        opacity: 1,
+        isStencilLabel: true,
+        parentId: parentId,
+      };
+      return [mainGroup, label];
+    },
+  }
+];
